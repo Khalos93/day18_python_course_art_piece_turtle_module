@@ -1,11 +1,18 @@
-from turtle import Turtle, Screen
-from matplotlib import colors
 import random
+import turtle
+from turtle import Turtle, Screen
+from util import draw_modern_painting
+import colorgram
 
+turtle.colormode(255)
+colors = []
+extract_colors = colorgram.extract('damien_hirst_dot_painting.jpg', 10)
+for color in extract_colors:
+    new_color = (color.rgb[0], color.rgb[1], color.rgb[2])
+    colors.append(new_color)
 
 timmy_the_turtle = Turtle()
 
-colors = list(colors.CSS4_COLORS.keys())
 
 timmy_the_turtle.shape('turtle')
 timmy_the_turtle.color('magenta')
@@ -16,13 +23,7 @@ y_position = -250
 x_position = -250
 
 
-for _ in range(0, 10):
-    y_position += 50
-    timmy_the_turtle.setx(x_position)
-    timmy_the_turtle.sety(y_position)
-    for _ in range(0, 10):
-        timmy_the_turtle.dot(20, 'red')
-        timmy_the_turtle.forward(50)
+draw_modern_painting(timmy_the_turtle, x_position, y_position, 10, colors)
 
 
 screen = Screen()
